@@ -23,7 +23,7 @@ const App = () => {
       confirmButtonText: "Yes",
       cancelButtonText: "No",
     }).then((res) => {
-      if (res.value) {
+      if (res?.value) {
         const items = reorder(
           state.items,
           result.source.index,
@@ -37,47 +37,45 @@ const App = () => {
   };
 
   return (
-    <>
-      <div className="container">
-        <div className="imageWrap pt-4">
-          <DragDropContext onDragEnd={onDragEnd}>
-            <Droppable droppableId="droppable" onDragEnd={onDragEnd}>
-              {(provided, snapshot) => (
-                <div
-                  {...provided.droppableProps}
-                  ref={provided.innerRef}
-                  style={getListStyle(snapshot.isDraggingOver)}
-                >
-                  {state.items.map((item, index) => {
-                    return (
-                      <Draggable
-                        key={item.id}
-                        draggableId={item.id}
-                        index={index}
-                      >
-                        {(provided) => (
-                          <div
-                            ref={provided.innerRef}
-                            {...provided.draggableProps}
-                            {...provided.dragHandleProps}
-                            style={getItemStyle(provided.draggableProps.style)}
-                          >
-                            <div className="img-wrap">
-                              <img src={item.src} />
-                            </div>
+    <div className="container">
+      <div className="imageWrap pt-4">
+        <DragDropContext onDragEnd={onDragEnd}>
+          <Droppable droppableId="droppable" onDragEnd={onDragEnd}>
+            {(provided, snapshot) => (
+              <div
+                {...provided.droppableProps}
+                ref={provided.innerRef}
+                style={getListStyle(snapshot.isDraggingOver)}
+              >
+                {state?.items?.map((item, index) => {
+                  return (
+                    <Draggable
+                      key={item.id}
+                      draggableId={item?.id}
+                      index={index}
+                    >
+                      {(provided) => (
+                        <div
+                          ref={provided.innerRef}
+                          {...provided.draggableProps}
+                          {...provided.dragHandleProps}
+                          style={getItemStyle(provided.draggableProps.style)}
+                        >
+                          <div className="img-wrap">
+                            <img src={item?.src} alt="pic" />
                           </div>
-                        )}
-                      </Draggable>
-                    );
-                  })}
-                  {provided.placeholder}
-                </div>
-              )}
-            </Droppable>
-          </DragDropContext>
-        </div>
+                        </div>
+                      )}
+                    </Draggable>
+                  );
+                })}
+                {provided.placeholder}
+              </div>
+            )}
+          </Droppable>
+        </DragDropContext>
       </div>
-    </>
+    </div>
   );
 };
 
