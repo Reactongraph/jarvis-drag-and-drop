@@ -7,5 +7,5 @@ export const getItemStyle = draggableStyle => ({
 });
 
 export const getListStyle = isDraggingOver => ({
-  background: isDraggingOver ? "#fff7b7" : "#f5f5f5"
+  background: isDraggingOver ? "#2B547E" : "#368BC1"
 });
